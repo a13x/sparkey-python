@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2011-2013 Spotify AB
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='sparkey-python',
       version='0.1.0',
@@ -10,9 +10,14 @@ setup(name='sparkey-python',
       author_email='krka@spotify.com',
       description='Python bindings for Sparkey',
       license='Apache Software License 2.0',
-      packages=['sparkey'],
-      classifiers=[
+     classifiers=[
           'Topic :: Database',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: Apache Software License',
-      ])
+      ],
+      packages=['sparkey'],
+      package_data={'sparkey': ['sparkey.cdef']},
+      install_requires=["cffi>=1.0.0"],
+      setup_requires=["cffi>=1.0.0"],
+      cffi_modules=["sparkey/sparkey_build.py:ffi"]
+ )
